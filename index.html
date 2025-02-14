@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Rules</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #1e1e1e; /* Dark background */
+            color: #f4f4f4; /* Light text */
+        }
+
+        .event-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .event-name {
+            padding: 20px;
+            background-color: #333; /* Darker background for event names */
+            color: #f4f4f4; /* Light text */
+            cursor: pointer;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            text-align: left;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-name:hover {
+            background-color: #ff0088; /* Highlight on hover */
+            transform: translateX(10px); /* Slight movement on hover */
+        }
+
+        .event-name::after {
+            content: "▼"; /* Down caret symbol */
+            position: absolute;
+            right: 20px;
+            font-size: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .event-name.active::after {
+            content: "▲"; /* Up caret symbol when active */
+            transform: rotate(180deg);
+        }
+
+        .event-rule {
+            display: none;
+            padding: 20px;
+            background-color: #2d2d2d; /* Slightly lighter dark background for rules */
+            border: 1px solid #444;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: #f4f4f4; /* Light text */
+            animation: fadeIn 0.5s ease;
+        }
+
+        .event-rule p {
+            margin: 0 0 15px 0;
+        }
+
+        .event-rule ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .event-rule ul li {
+            margin-bottom: 10px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .event-container {
+            animation: slideIn 0.8s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="event-container">
+        <!-- Event 1: Code in Dark -->
+        <div class="event-name" onclick="toggleRule('rule1')">
+            <span>1. Code in Dark</span>
+        </div>
+        <div id="rule1" class="event-rule">
+            <p><strong>Rules for Code in Dark:</strong></p>
+            <ul>
+                <li>Participants must write code in a dark-themed editor.</li>
+                <li>No external plugins or themes are allowed.</li>
+                <li>Code must be written in a single session without breaks.</li>
+                <li>Submissions will be judged on functionality and creativity.</li>
+            </ul>
+        </div>
+
+        <!-- Event 2: Debugging -->
+        <div class="event-name" onclick="toggleRule('rule2')">
+            <span>2. Debugging</span>
+        </div>
+        <div id="rule2" class="event-rule">
+            <p><strong>Rules for Debugging:</strong></p>
+            <ul>
+                <li>Participants will be given a buggy code snippet.</li>
+                <li>They must identify and fix all bugs within the given time.</li>
+                <li>No external tools or debuggers are allowed.</li>
+                <li>Submissions will be judged on accuracy and speed.</li>
+            </ul>
+        </div>
+
+        <!-- Event 3: UI/UX -->
+        <div class="event-name" onclick="toggleRule('rule3')">
+            <span>3. UI/UX</span>
+        </div>
+        <div id="rule3" class="event-rule">
+            <p><strong>Rules for UI/UX:</strong></p>
+            <ul>
+                <li>Participants must design a user-friendly interface for a given problem statement.</li>
+                <li>Tools like Figma, Adobe XD, or Sketch can be used.</li>
+                <li>Submissions must include wireframes and a brief explanation of the design.</li>
+                <li>Judging criteria: usability, creativity, and adherence to the problem statement.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function toggleRule(ruleId) {
+            const rule = document.getElementById(ruleId);
+            const eventName = rule.previousElementSibling;
+
+            if (rule.style.display === 'none' || rule.style.display === '') {
+                rule.style.display = 'block';
+                eventName.classList.add('active'); // Add active class for arrow icon
+            } else {
+                rule.style.display = 'none';
+                eventName.classList.remove('active'); // Remove active class for arrow icon
+            }
+        }
+    </script>
+</body>
+</html>
